@@ -1,3 +1,7 @@
+'''
+Domaci 1 Django
+
+'''
 from bs4 import BeautifulSoup
 import requests
 
@@ -9,26 +13,40 @@ f.write(soup.prettify())
 f.close()
 
 class Knjiga:
+    '''
+    Klasa Knjiga
+
+    '''
     def __init__(self, naslov, zanr, autor, cijena=0):
         self.naslov = naslov
         self.zanr = zanr
         self.autor = autor
         self.__cijena = cijena
-    
+
     def get_naslov(self):
+        '''
+        getter naslova
+        '''
         return self.naslov
 
     def get_cijena(self, kolicina):
+        '''
+        getter cijene u zavisnosti od kolicine
+        '''
         return self.__cijena*kolicina
     def set_cijena(self, popust):
+        '''
+        setter cijene
+        '''
         self.__cijena = self.__cijena - self.__cijena*popust/100
 class Poezija(Knjiga):
-    def __init__(self, naslov, zanr, autor, cijena, br_pjesama):    
+    '''
+    Klasa Poezija nasljedjuje klasu Knjiga
+    '''
+    #pylint: disable=too-many-arguments
+    def __init__(self, naslov, zanr, autor, cijena, br_pjesama):
         super().__init__(naslov, zanr, autor, cijena)
         self.br_pjesama = br_pjesama
-
-
-  
 
 knjiga1 = Knjiga("Nepodnosljiva lakoca postojanja", "Filozofska fikcija", "Milan Kundera", 10)
 knjiga2 = Knjiga("Proces", "Filozofska fikcija", "Franc Kafka")
@@ -72,7 +90,3 @@ for i in knjige:
     knjige_klase.append(Knjiga(*i))
 
 print(knjige_klase[1].get_cijena(1))
-
-
-
-    
